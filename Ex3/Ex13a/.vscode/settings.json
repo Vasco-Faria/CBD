@@ -1,0 +1,5 @@
+{
+    "java.project.referencedLibraries": [
+        "./jedis-5.0.0-javadoc.jar"
+    ]
+}
