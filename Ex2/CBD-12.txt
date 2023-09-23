@@ -1,1 +1,0 @@
-redis-cli --pipe CBD-12-Batch.txt	

@@ -1,0 +1,57 @@
+//main 
+
+while(n<30){
+            sistema.Request("Vasco", "CBD");
+            n++;
+        }
+        sistema.Request("Vasco", "IES");
+        sistema.Request("Vasco", "IES");
+        sistema.Request("Vasco", "CBD");
+        sistema.Request("Vasco", "CBD");
+        sistema.Request("Vasco", "IA");
+        sistema.Request("Vasco", "IA");
+
+
+//output 
+
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: IES.   Request accepted!!
+Vasco  Requests: IES.   Request accepted!!
+Vasco  Requests: CBD.   Request not accepted...
+Vasco  Requests: CBD.   Request not accepted...
+Vasco  Requests: IA.    Request accepted!!
+Vasco  Requests: IA.    Request accepted!!
+
+
+//notas
+
+Aceita apenas um maximo de 30 unidades.

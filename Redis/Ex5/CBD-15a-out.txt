@@ -1,0 +1,53 @@
+//main
+
+ while(n<35){
+            sistema.Request("Vasco", "CBD");
+            n++;
+        }
+        sistema.Request("Vasco","IES");
+
+
+//output 
+
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request accepted!!
+Vasco  Requests: CBD.   Request not accepted...
+Vasco  Requests: CBD.   Request not accepted...
+Vasco  Requests: CBD.   Request not accepted...
+Vasco  Requests: CBD.   Request not accepted...
+Vasco  Requests: IES.   Request not accepted...
+
+
+//Notas
+
+Aceita um maximo de 30 pedidos a cada 60 minutos.
+A cada 60 minutos , a lista do Utilizador e renovada e pode aceitar mais 30.
+
