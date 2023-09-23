@@ -30,6 +30,9 @@ public class Sistemab
         boolean keyexists=jedis.exists(key);
 
         long quantityNow=1;
+
+        //caso utilizador ainda nao tenha feito nenhum pedido 
+        //cria uma lista para este com todos os pedidos e com um tempo de vida
         
         if (!keyexists && timeleft<0){
             Pipeline pipeline= jedis.pipelined();
@@ -40,15 +43,22 @@ public class Sistemab
             System.out.println(username+ "  Requests: "+ pedido +  ".\tRequest accepted!!");
         }else{
                 
+
+            //obter pedidos feitos pelos utilizador
             List<String> elements=jedis.lrange(key,0,-1);
 
 
+            //ver quantos produtos destes ja pediu 
             for(String e:elements){
                     if(e.equals(pedido)){
                         quantityNow++;
                     }
             }
 
+            
+
+
+            //ver se o utilizador ja pediu mais do que o limite de unidades por produto
 
                 if(quantityNow <= limit && timeleft>0){
                     Pipeline pipeline2= jedis.pipelined();

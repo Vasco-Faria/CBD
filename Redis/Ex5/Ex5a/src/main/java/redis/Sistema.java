@@ -28,6 +28,9 @@ public class Sistema
         long timeleft=jedis.ttl(key);
 
         boolean keyexists=jedis.exists(key);
+
+        //caso utilzizador ainda nao tenha feito nenhum pedido
+        //cria uma lista com um tempo de vida
         
         if (!keyexists && timeleft<0){
             Pipeline pipeline= jedis.pipelined();
@@ -39,6 +42,9 @@ public class Sistema
         }else{
             long QuantidaDePedidos= jedis.llen(key);
 
+
+            //caso utilizador nao tenha feito os 30 pedidos no espaco temporal
+            
             if(QuantidaDePedidos < limit && timeleft>0){
                 Pipeline pipeline2= jedis.pipelined();
                 jedis.rpush(key, pedido);
