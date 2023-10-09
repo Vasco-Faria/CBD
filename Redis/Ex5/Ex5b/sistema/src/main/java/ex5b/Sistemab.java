@@ -22,54 +22,41 @@ public class Sistemab
 
 
 
-    public void Request(String username,String pedido){
+    public void Request(String username,String pedido,int quantity){
         String key="Requests:"+ username; 
-
+        String quantityNow=String.valueOf(quantity);
         long timeleft=jedis.ttl(key);
 
-        boolean keyexists=jedis.exists(key);
+        boolean pedidoexists=jedis.hexists(key,pedido);
 
-        long quantityNow=1;
-
-        //caso utilizador ainda nao tenha feito nenhum pedido 
-        //cria uma lista para este com todos os pedidos e com um tempo de vida
         
-        if (!keyexists && timeleft<0){
+        if (!pedidoexists || timeleft<0){
             Pipeline pipeline= jedis.pipelined();
-            jedis.del(key);
-            jedis.rpush(key, pedido);
+            jedis.hdel(key,pedido);
+            jedis.hset(key, pedido,quantityNow);
             jedis.expire(key,timeslot);
             pipeline.sync();
-            System.out.println(username+ "  Requests: "+ pedido +  ".\tRequest accepted!!");
+            System.out.println(username+ "  Requests: "+ pedido +  ".Unidades Requesitadas ate agora: "+ quantityNow + ".\tRequest accepted!!");
         }else{
                 
-
-            //obter pedidos feitos pelos utilizador
-            List<String> elements=jedis.lrange(key,0,-1);
-
-
-            //ver quantos produtos destes ja pediu 
-            for(String e:elements){
-                    if(e.equals(pedido)){
-                        quantityNow++;
-                    }
-            }
-
+            String QPjedis = jedis.hget(key,pedido);
+            int quantidadeAntes=Integer.parseInt(QPjedis);
+            int quantidadeAtual=quantidadeAntes+quantity;
             
 
-
-            //ver se o utilizador ja pediu mais do que o limite de unidades por produto
-
-                if(quantityNow <= limit && timeleft>0){
+                if(quantidadeAtual<= limit && timeleft>0){
+                    String quantidadeAtual2=String.valueOf(quantidadeAtual);
                     Pipeline pipeline2= jedis.pipelined();
-                    jedis.rpush(key, pedido);
+                    jedis.hset(key, pedido,quantidadeAtual2);
                     pipeline2.sync();
-                    System.out.println(username+ "  Requests: "+ pedido +  ".\tRequest accepted!!");
+                    System.out.println(username+ "  Requests: "+ pedido + ".Unidades Requesitadas ate agora: " + quantidadeAtual2 + ".\tRequest accepted!!");
                 }else{
                     System.out.println(username+ "  Requests: "+ pedido +  ".\tRequest not accepted...");
                 }
 
         }
+
+        
 
       
     }
@@ -84,18 +71,20 @@ public class Sistemab
 
         Sistemab sistema = new Sistemab(jedis,limit,timeslot);
         int n=0;
-
+        
         while(n<30){
-            sistema.Request("Vasco", "CBD");
+            sistema.Request("Vasco", "CBD",1);
             n++;
         }
-        sistema.Request("Vasco", "IES");
-        sistema.Request("Vasco", "IES");
-        sistema.Request("Vasco", "CBD");
-        sistema.Request("Vasco", "CBD");
-        sistema.Request("Vasco", "IA");
-        sistema.Request("Vasco", "IA");
+        
+        sistema.Request("Vasco", "IES",2);
+        sistema.Request("Vasco", "IES",3);
+        sistema.Request("Vasco", "CBD",1);
+        sistema.Request("Vasco", "CBD",1);
+        sistema.Request("Vasco", "IA",30);
+        sistema.Request("Vasco", "IA",1);
 
+        sistema.Request("Vasco", "Peras", 15);
         jedis.close();
     }
 
