@@ -68,7 +68,7 @@ class SistemaB{
 
             Bson projecao = Projections.fields(
                 Projections.include("nome", "localidade", "gastronomia"),
-                Projections.excludeId() // 
+                Projections.excludeId() 
             );
 
             FindIterable<Document> docs = collection.find(filtro).projection(projecao);
@@ -96,7 +96,7 @@ class SistemaB{
 
             Bson projecao = Projections.fields(
                 Projections.include("nome", "localidade", "gastronomia"),
-                Projections.excludeId() // 
+                Projections.excludeId() 
             );
 
             FindIterable<Document> docs = collection.find(filtro).projection(projecao);
@@ -117,11 +117,9 @@ public class AlineaB {
     {
         SistemaB sistema = new SistemaB();
         System.out.println();
-        sistema.PesquisarComIndexs();
-        System.out.println();
         sistema.PesquisarSemIndexs();
         System.out.println();
-        
-
+        sistema.PesquisarComIndexs();
+        System.out.println();
     }
 }

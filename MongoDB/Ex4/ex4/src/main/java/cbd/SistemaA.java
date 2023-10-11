@@ -4,20 +4,17 @@ package cbd;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Indexes;
-import com.mongodb.client.model.Projections;
+
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.bson.Document;
-import org.bson.conversions.Bson;
+
 
 class SistemaAtendimentoA{
 
@@ -45,32 +42,34 @@ class SistemaAtendimentoA{
 
             Document primeiroPedido = new Document()
                 .append("produto", product)
-                .append("tempoDeVida", System.currentTimeMillis() + 10000); 
+                .append("tempoDeVida", System.currentTimeMillis() + 60 * 60 * 1000);
+
 
             novoUsuario.getList("pedidos", Document.class).add(primeiroPedido);
 
             collection.insertOne(novoUsuario);
-            System.out.println("Pedido adicionado com sucesso!");
+            System.out.println("-> "+ username + ": Pedido adicionado com sucesso!");
         } else {
              List<Document> pedidos = (List<Document>) usuarioExistente.get("pedidos");
 
             if (pedidos.size() >= 30) {
-                System.out.println("Limite máximo de pedidos excedido!");
+                System.out.println("-> "+ username + ": Limite máximo de pedidos excedido!");
             } else {
                
                 Document novoPedido = new Document()
                         .append("produto", product)
-                        .append("tempoDeVida", System.currentTimeMillis() + 10000); // 10 segundos
+                       .append("tempoDeVida", System.currentTimeMillis() + 60 * 60 * 1000);
+
 
                 pedidos.add(novoPedido);
 
-                // Atualizar o documento do usuário com a nova lista de pedidos
+               
                 collection.updateOne(
                         new Document("username", username),
                         new Document("$set", new Document("pedidos", pedidos))
                 );
 
-                System.out.println("Pedido adicionado com sucesso!");
+                System.out.println("-> "+ username + ": Pedido adicionado com sucesso!");
             }
          }
      }
@@ -109,8 +108,13 @@ public class SistemaA
 {
     public static void main( String[] args )
     {
+        
         SistemaAtendimentoA sistema=new SistemaAtendimentoA();
         int i=0;
+
+        System.out.println("Sistema de Atendimento A");
+        System.out.println();
+
         while(i<30){
             sistema.efetuarPedido("Vasco", "CBD");
             i++;
@@ -121,8 +125,7 @@ public class SistemaA
             n++;
         }
 
-        //pedidos 31 para mostrar limite
-        sistema.efetuarPedido("Vasco", "CBD");
+        sistema.efetuarPedido("Vasco", "IES");
         sistema.efetuarPedido("Amelia", "IES");
 
 
