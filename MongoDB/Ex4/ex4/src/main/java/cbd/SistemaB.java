@@ -45,7 +45,7 @@ class SistemaAtendimentoB{
         Document novoPedido = new Document()
             .append("produto", produto)
             .append("quantity", quantity)
-            .append("tempoDeVida", System.currentTimeMillis() + 1000);
+            .append("tempoDeVida", System.currentTimeMillis() + 60*60*1000);
 
         novoUsuario.getList("pedidos", Document.class).add(novoPedido);
 
@@ -65,7 +65,7 @@ class SistemaAtendimentoB{
             Document novoPedido = new Document()
                 .append("produto", produto)
                 .append("quantity", quantity)
-                .append("tempoDeVida", System.currentTimeMillis() + 1000);
+                .append("tempoDeVida", System.currentTimeMillis() + 60*60*1000);
 
             pedidos.add(novoPedido);
 
@@ -77,9 +77,9 @@ class SistemaAtendimentoB{
             System.out.println("-> " + username + ": Pedido adicionado com sucesso! Quantidade pedida ate agora: "+ totalagora );
         }
     }
-}
+    }
 
- private static void cleanupExpiredOrders(MongoCollection<Document> collection) {
+    private static void cleanupExpiredOrders(MongoCollection<Document> collection) {
         FindIterable<Document> usuarios = collection.find();
 
         for (Document usuario : usuarios) {
@@ -106,6 +106,7 @@ class SistemaAtendimentoB{
         }
         }
     }
+
 
 }
 
