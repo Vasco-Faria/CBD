@@ -115,6 +115,8 @@ public class SistemaB {
     public static void main(String[] args) {
         
         SistemaAtendimentoB sistema= new SistemaAtendimentoB();
+        System.out.println("Sistema de Atendimento B");
+        System.out.println();
 
         sistema.efetuarPedido("Julio", "Peras", 5);
         sistema.efetuarPedido("Julio", "Peras", 5);
@@ -126,6 +128,8 @@ public class SistemaB {
         sistema.efetuarPedido("Caramulo", "Agua", 10);
         sistema.efetuarPedido("Julio", "Maca", 3);
         sistema.efetuarPedido("Caramulo", "Almondegas", 3);
+        sistema.efetuarPedido("Julio", "Agua", 1);
+        sistema.efetuarPedido("Julio", "Maca", 3);
 
 
 

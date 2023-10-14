@@ -1,0 +1,41 @@
+-Interacao:
+
+
+ 	System.out.println("Sistema de Atendimento B");
+        System.out.println();
+
+        sistema.efetuarPedido("Julio", "Peras", 5);
+        sistema.efetuarPedido("Julio", "Peras", 5);
+        sistema.efetuarPedido("Julio", "Peras", 5);
+        sistema.efetuarPedido("Julio", "Peras", 5);
+        sistema.efetuarPedido("Julio", "Peras", 3);
+        sistema.efetuarPedido("Julio", "Peras", 3);
+        sistema.efetuarPedido("Caramulo", "Agua", 20);
+        sistema.efetuarPedido("Caramulo", "Agua", 10);
+        sistema.efetuarPedido("Julio", "Maca", 3);
+        sistema.efetuarPedido("Caramulo", "Almondegas", 3);
+        sistema.efetuarPedido("Julio", "Agua", 1);
+        sistema.efetuarPedido("Julio", "Maca", 3);
+
+
+-Output:
+
+	Sistema de Atendimento B
+
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 5
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 10
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 15
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 20
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 23
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 26
+	-> Caramulo: Pedido adicionado com sucesso! Quantidade pedida ate agora: 20
+	-> Caramulo: Pedido adicionado com sucesso! Quantidade pedida ate agora: 30
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 29
+	-> Caramulo: Limite máximo de unidades excedido!
+	-> Julio: Pedido adicionado com sucesso! Quantidade pedida ate agora: 30
+	-> Julio: Limite máximo de unidades excedido!
+	
+-Comando para limpar colecao:
+
+	db.pedidos.deleteMany({})
+

@@ -48,7 +48,7 @@ class SistemaAtendimentoA{
             novoUsuario.getList("pedidos", Document.class).add(primeiroPedido);
 
             collection.insertOne(novoUsuario);
-            System.out.println("-> "+ username + ": Pedido adicionado com sucesso!");
+            System.out.println("-> "+ username + ": Pedido adicionado com sucesso!Ainda pode fazer mais " + 29 + " pedidos.");
         } else {
              List<Document> pedidos = (List<Document>) usuarioExistente.get("pedidos");
 
@@ -69,7 +69,12 @@ class SistemaAtendimentoA{
                         new Document("$set", new Document("pedidos", pedidos))
                 );
 
-                System.out.println("-> "+ username + ": Pedido adicionado com sucesso!");
+                int ap =30-pedidos.size();
+                if (ap==0){
+                     System.out.println("-> "+ username + ": Pedido adicionado com sucesso! Ultimo pedido possivel.");
+                }else{
+                    System.out.println("-> "+ username + ": Pedido adicionado com sucesso! Ainda pode fazer mais " + ap + " pedidos.");
+                }
             }
          }
      }
@@ -127,8 +132,6 @@ public class SistemaA
 
         sistema.efetuarPedido("Vasco", "IES");
         sistema.efetuarPedido("Amelia", "IES");
-
-
         sistema.efetuarPedido("Maria", "SIO");
     }
 }
