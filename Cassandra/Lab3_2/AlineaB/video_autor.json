@@ -1,0 +1,92 @@
+[
+  {
+    "autor": "emma_wilson",
+    "upload": "2024-07-21 12:15:00.000",
+    "id": 11,
+    "descricao": "Understanding the fundamentals of cloud computing",
+    "followers": ["ava_jones", "noah_thompson"],
+    "nome": "Cloud Computing Basics",
+    "tags": ["basics", "cloud_computing"]
+  },
+  {
+    "autor": "alice_williams",
+    "upload": "2023-04-10 10:30:00.000",
+    "id": 3,
+    "descricao": "Building interactive websites",
+    "followers": ["charlie_brown", "susan_white"],
+    "nome": "Web Development Workshop",
+    "tags": ["web_development", "workshop"]
+  },
+  {
+    "autor": "oliver_smith",
+    "upload": "2024-10-22 15:30:00.000",
+    "id": 14,
+    "descricao": "Building mobile apps with React Native",
+    "followers": ["olivia_davis", "sophie_brown"],
+    "nome": "React Native Tutorial",
+    "tags": ["react_native", "tutorial"]
+  },
+  {
+    "autor": "liam_miller",
+    "upload": "2024-06-26 14:45:00.000",
+    "id": 10,
+    "descricao": "Exploring common cybersecurity threats and preventive measures",
+    "followers": ["emma_wilson", "noah_thompson"],
+    "nome": "Cybersecurity Threats",
+    "tags": ["cybersecurity", "threats"]
+  },
+  {
+    "autor": "noah_thompson",
+    "upload": "2024-08-16 18:00:00.000",
+    "id": 12,
+    "descricao": "Exploring the world of IoT and its applications",
+    "followers": ["ava_jones", "oliver_smith"],
+    "nome": "Internet of Things (IoT)",
+    "tags": ["applications", "iot"]
+  },
+  {
+    "autor": "olivia_davis",
+    "upload": "2024-05-31 09:30:00.000",
+    "id": 9,
+    "descricao": "Applications of AI in the healthcare industry",
+    "followers": ["emma_wilson", "liam_miller"],
+    "nome": "AI in Healthcare",
+    "tags": ["ai", "healthcare"]
+  },
+  {
+    "autor": "ava_jones",
+    "upload": "2024-09-19 21:30:00.000",
+    "id": 13,
+    "descricao": "An introduction to quantum computing concepts",
+    "followers": ["oliver_smith", "sophie_brown"],
+    "nome": "Quantum Computing Explained",
+    "tags": ["introduction", "quantum_computing"]
+  },
+  {
+    "autor": "sophie_brown",
+    "upload": "2024-11-25 18:45:00.000",
+    "id": 15,
+    "descricao": "Exploring AGI and its implications",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Artificial General Intelligence",
+    "tags": ["agi", "implications"]
+  },
+  {
+    "autor": "bob_johnson",
+    "upload": "2023-03-20 15:00:00.000",
+    "id": 2,
+    "descricao": "Exploring the world of data science",
+    "followers": ["alice_williams", "charlie_brown"],
+    "nome": "Data Science Fundamentals",
+    "tags": ["analytics", "data_science"]
+  },
+  {
+    "autor": "jane_smith",
+    "upload": "2023-02-15 09:30:00.000",
+    "id": 1,
+    "descricao": "Learn the basics of programming",
+    "followers": ["alice_williams", "bob_johnson"],
+    "nome": "Introduction to Programming",
+    "tags": ["beginner", "programming"]
+  }
+]

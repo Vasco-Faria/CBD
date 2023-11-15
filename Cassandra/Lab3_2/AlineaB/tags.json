@@ -1,0 +1,52 @@
+[
+  {
+    "name": "programming",
+    "id": 6,
+    "video_id": 7
+  },
+  {
+    "name": "nosql",
+    "id": 2,
+    "video_id": 1
+  },
+  {
+    "name": "best_practices",
+    "id": 4,
+    "video_id": 3
+  },
+  {
+    "name": "machine_learning",
+    "id": 10,
+    "video_id": 11
+  },
+  {
+    "name": "mobile_app",
+    "id": 9,
+    "video_id": 10
+  },
+  {
+    "name": "web_development",
+    "id": 8,
+    "video_id": 9
+  },
+  {
+    "name": "modeling",
+    "id": 3,
+    "video_id": 2
+  },
+  {
+    "name": "data_science",
+    "id": 7,
+    "video_id": 8
+  },
+  {
+    "name": "queries",
+    "id": 5,
+    "video_id": 4
+  },
+  {
+    "name": "database",
+    "id": 1,
+    "video_id": 1
+  }
+]

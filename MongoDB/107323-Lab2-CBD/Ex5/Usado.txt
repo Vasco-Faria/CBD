@@ -1,0 +1,17 @@
+Comandos usados nas alineas do Ex5
+
+populatePhones(351, 1, 5)
+
+db.phones.drop()
+
+populatePhones(351, 1, 200000)
+
+
+db.phones.find()
+db.phones.count() //200000
+
+load("/home/vascomfaria/UA-LEI/CBD/MongoDB/Ex5/populatePhones.js")
+load("/home/vascomfaria/UA-LEI/CBD/MongoDB/Ex5/FuncD.js")
+
+
+FuncD();

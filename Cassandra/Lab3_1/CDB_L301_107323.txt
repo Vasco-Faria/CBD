@@ -1,0 +1,78 @@
+--Cassandra--
+
+Cassandra is a distributed database from Apache that is highly scalable and designed to manage very large amounts of structured data. It provides high availability with no single point of failure.
+
+
+
+-Keyspace-
+
+CREATE KEYSPACE "CBD_CASSANDRA_3_1" WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3}; //cria um keyspace
+
+
+DESCRIBE keyspaces; //mostra todos os keyspaces criados
+
+
+USE "CBD_CASSANDRA_3_1" //para usar o keyspace
+
+ALTER KEYSPACE "CBD_CASSANDRA_3_1" WITH ...
+
+DROP KEYSPACE "CBD_CASSANDRA_3_1" //delete keyspace
+
+
+
+-Tables-
+
+
+CREATE TABLE cbd3_1(
+	id int,
+	nome text,
+	morada text,
+	PRIMARY KEY (id)
+	);
+	
+// cria uma tabela 
+
+select * from cbd3_1 //mostra a tabela
+
+ id | morada | nome
+----+--------+------
+(0 rows)
+
+cqlsh:CBD_CASSANDRA_3_1> ALTER TABLE cbd3_1 ADD email text;
+cqlsh:CBD_CASSANDRA_3_1> select * from cbd3_1 ;
+
+ id | email | morada | nome
+----+-------+--------+------
+
+
+cqlsh:CBD_CASSANDRA_3_1> ALTER TABLE cbd3_1 DROP morada;
+cqlsh:CBD_CASSANDRA_3_1> select * from cbd3_1 ;
+
+ id | email | nome
+----+-------+------
+
+(0 rows)
+
+INSERT
+
+cqlsh:CBD_CASSANDRA_3_1> INSERT INTO cbd3_1 (id, email,nome) VALUES (1,'julia@gmail.com','Julia');
+cqlsh:CBD_CASSANDRA_3_1> INSERT INTO cbd3_1 (id, email,nome) VALUES (2,'amelia@gmail.com','Amelia');
+cqlsh:CBD_CASSANDRA_3_1> select * from cbd3_1 ;
+
+ id | email            | nome
+----+------------------+--------
+  1 |  julia@gmail.com |  Julia
+  2 | amelia@gmail.com | Amelia
+
+(2 rows)
+
+
+
+
+
+
+
+
+
+
+

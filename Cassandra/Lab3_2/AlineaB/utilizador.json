@@ -1,0 +1,74 @@
+[
+  {
+    "username": "charlie_brown",
+    "email": "charlie.brown@example.com",
+    "nome": "Charlie Brown",
+    "registro_time": "2023-05-05 17:00:00.000"
+  },
+  {
+    "username": "susan_white",
+    "email": "susan.white@example.com",
+    "nome": "Susan White",
+    "registro_time": "2023-06-08 20:30:00.000"
+  },
+  {
+    "username": "emma_wilson",
+    "email": "emma.wilson@example.com",
+    "nome": "Emma Wilson",
+    "registro_time": "2024-07-20 11:15:00.000"
+  },
+  {
+    "username": "alice_williams",
+    "email": "alice.williams@example.com",
+    "nome": "Alice Williams",
+    "registro_time": "2023-04-10 09:15:00.000"
+  },
+  {
+    "username": "oliver_smith",
+    "email": "oliver.smith@example.com",
+    "nome": "Oliver Smith",
+    "registro_time": "2024-10-21 14:30:00.000"
+  },
+  {
+    "username": "liam_miller",
+    "email": "liam.miller@example.com",
+    "nome": "Liam Miller",
+    "registro_time": "2024-06-25 13:45:00.000"
+  },
+  {
+    "username": "noah_thompson",
+    "email": "noah.thompson@example.com",
+    "nome": "Noah Thompson",
+    "registro_time": "2024-08-15 17:00:00.000"
+  },
+  {
+    "username": "olivia_davis",
+    "email": "olivia.davis@example.com",
+    "nome": "Olivia Davis",
+    "registro_time": "2024-05-30 08:30:00.000"
+  },
+  {
+    "username": "ava_jones",
+    "email": "ava.jones@example.com",
+    "nome": "Ava Jones",
+    "registro_time": "2024-09-18 20:30:00.000"
+  },
+  {
+    "username": "sophie_brown",
+    "email": "sophie.brown@example.com",
+    "nome": "Sophie Brown",
+    "registro_time": "2024-11-24 17:45:00.000"
+  },
+  {
+    "username": "bob_johnson",
+    "email": "bob.johnson@example.com",
+    "nome": "Bob Johnson",
+    "registro_time": "2023-03-20 14:45:00.000"
+  },
+  {
+    "username": "jane_smith",
+    "email": "jane.smith@example.com",
+    "nome": "Jane Smith",
+    "registro_time": "2023-02-15 08:30:00.000"
+  }
+]

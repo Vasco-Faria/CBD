@@ -1,0 +1,3 @@
+/// ligar sv mongo localmente 
+
+mongod --dbpath ./data

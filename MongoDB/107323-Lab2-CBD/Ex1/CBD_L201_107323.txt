@@ -1,0 +1,60 @@
+
+show dbs
+
+admin   40.00 KiB
+config  60.00 KiB
+local   40.00 KiB
+
+>use mydb
+switched to db mydb
+>db
+mydb
+
+
+>show dbs
+
+admin    40.00 KiB
+cbd     624.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+
+>db.movie.insert({"name":"tutorials point"})
+
+>db.createCollection(name, options)
+>db.COLLECTION_NAME.drop()
+
+>db.COLLECTION_NAME.insert(document)
+
+> db.users.insert({
+... _id : ObjectId("507f191e810c19729de860ea"),
+... title: "MongoDB Overview",
+... description: "MongoDB is no sql database",
+... by: "tutorials point",
+... url: "http://www.tutorialspoint.com",
+... tags: ['mongodb', 'database', 'NoSQL'],
+... likes: 100
+... })
+WriteResult({ "nInserted" : 1 })
+>
+
+>db.COLLECTION_NAME.remove(DELLETION_CRITTERIA)
+
+>db.COLLECTION_NAME.find().sort({KEY:1})
+>db.COLLECTION_NAME.createIndex({KEY:1})
+
+>db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)
+
+Backup!!
+>mongodump
+Restore data
+>mongorestore
+
+
+
+
+
+
+
+
+
+

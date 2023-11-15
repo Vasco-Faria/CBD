@@ -1,0 +1,91 @@
+-Interacao:
+
+while(i<30){
+            sistema.efetuarPedido("Vasco", "CBD");
+            i++;
+        }
+        int n=0;
+        while(n<30){
+            sistema.efetuarPedido("Amelia", "IES");
+            n++;
+        }
+
+        sistema.efetuarPedido("Vasco", "IES");
+        sistema.efetuarPedido("Amelia", "IES");
+        sistema.efetuarPedido("Maria", "SIO");
+    }
+    
+    
+-Output:
+
+Sistema de Atendimento A
+
+-> Vasco: Pedido adicionado com sucesso!Ainda pode fazer mais 29 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 28 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 27 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 26 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 25 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 24 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 23 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 22 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 21 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 20 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 19 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 18 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 17 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 16 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 15 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 14 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 13 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 12 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 11 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 10 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 9 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 8 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 7 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 6 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 5 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 4 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 3 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 2 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ainda pode fazer mais 1 pedidos.
+-> Vasco: Pedido adicionado com sucesso! Ultimo pedido possivel.
+-> Amelia: Pedido adicionado com sucesso!Ainda pode fazer mais 29 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 28 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 27 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 26 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 25 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 24 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 23 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 22 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 21 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 20 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 19 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 18 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 17 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 16 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 15 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 14 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 13 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 12 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 11 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 10 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 9 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 8 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 7 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 6 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 5 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 4 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 3 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 2 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ainda pode fazer mais 1 pedidos.
+-> Amelia: Pedido adicionado com sucesso! Ultimo pedido possivel.
+-> Vasco: Limite máximo de pedidos excedido!
+-> Amelia: Limite máximo de pedidos excedido!
+-> Maria: Pedido adicionado com sucesso!Ainda pode fazer mais 29 pedidos.
+
+
+
+
+Comando para limpar:
+	db.pedidos.deleteMany({})

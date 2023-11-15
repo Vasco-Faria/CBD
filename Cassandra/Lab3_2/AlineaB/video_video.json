@@ -1,0 +1,92 @@
+[
+  {
+    "id": 5,
+    "autor": "susan_white",
+    "upload": "2023-06-08 21:45:00.000",
+    "descricao": "Introduction to machine learning concepts",
+    "followers": ["bob_johnson", "jane_smith"],
+    "nome": "Machine Learning Basics",
+    "tags": ["basics", "machine_learning"]
+  },
+  {
+    "id": 16,
+    "autor": "olivia_davis",
+    "upload": "2024-12-28 14:30:00.000",
+    "descricao": "Tips for writing clean and maintainable frontend code",
+    "followers": ["emma_wilson", "liam_miller"],
+    "nome": "Frontend Development Best Practices",
+    "tags": ["best_practices", "frontend"]
+  },
+  {
+    "id": 19,
+    "autor": "noah_thompson",
+    "upload": "2025-03-25 20:00:00.000",
+    "descricao": "Exploring use cases for edge computing",
+    "followers": ["ava_jones", "oliver_smith"],
+    "nome": "Edge Computing Applications",
+    "tags": ["applications", "edge_computing"]
+  },
+  {
+    "id": 4,
+    "autor": "charlie_brown",
+    "upload": "2023-05-05 18:30:00.000",
+    "descricao": "Creating mobile applications",
+    "followers": ["jane_smith", "susan_white"],
+    "nome": "Mobile App Development",
+    "tags": ["development", "mobile_app"]
+  },
+  {
+    "id": 18,
+    "autor": "emma_wilson",
+    "upload": "2025-02-28 18:15:00.000",
+    "descricao": "Building applications without managing infrastructure",
+    "followers": ["ava_jones", "noah_thompson"],
+    "nome": "Serverless Architecture Explained",
+    "tags": ["architecture", "serverless"]
+  },
+  {
+    "id": 22,
+    "autor": "sophie_brown",
+    "upload": "2025-06-25 16:45:00.000",
+    "descricao": "Predictions and trends in the future of artificial intelligence",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "The Future of AI",
+    "tags": ["ai", "future"]
+  },
+  {
+    "id": 20,
+    "autor": "ava_jones",
+    "upload": "2025-04-28 21:30:00.000",
+    "descricao": "Introduction to deep learning concepts and algorithms",
+    "followers": ["oliver_smith", "sophie_brown"],
+    "nome": "Deep Learning Fundamentals",
+    "tags": ["deep_learning", "fundamentals"]
+  },
+  {
+    "id": 6,
+    "autor": "jane_smith",
+    "upload": "2023-07-12 13:00:00.000",
+    "descricao": "Protecting your digital world",
+    "followers": ["alice_williams", "bob_johnson"],
+    "nome": "Cybersecurity Essentials",
+    "tags": ["cybersecurity", "essentials"]
+  },
+  {
+    "id": 21,
+    "autor": "oliver_smith",
+    "upload": "2025-05-30 13:30:00.000",
+    "descricao": "Quick overview of Vue.js for web development",
+    "followers": ["olivia_davis", "sophie_brown"],
+    "nome": "Vue.js Crash Course",
+    "tags": ["crash_course", "vue_js"]
+  },
+  {
+    "id": 17,
+    "autor": "liam_miller",
+    "upload": "2025-01-31 16:45:00.000",
+    "descricao": "Understanding the importance of data privacy",
+    "followers": ["emma_wilson", "noah_thompson"],
+    "nome": "Data Privacy in the Digital Age",
+    "tags": ["data_privacy", "digital_age"]
+  }
+]

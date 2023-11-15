@@ -1,0 +1,134 @@
+USE cassandra3_2;
+
+CREATE TABLE utilizador
+(
+    username text,
+    nome text,
+    email text,
+    registro_time timestamp,
+    PRIMARY KEY (username)
+);
+
+
+CREATE TABLE video_autor
+(
+    id        int,
+    autor     text,
+    nome      text,
+    descricao text,
+    tags      set<text>,
+    upload    timestamp,
+    followers set<text>,
+    PRIMARY KEY (id,autor,upload)
+);
+
+CREATE TABLE video_video
+(
+    id        int,
+    autor     text,
+    nome      text,
+    descricao text,
+    tags      set<text>,
+    upload    timestamp,
+    followers set<text>,
+    PRIMARY KEY (id,autor,upload)
+);
+
+
+CREATE TABLE Comentarios_utilizador
+(
+    id         int,
+    autor      text,
+    comentario text,
+    video_id int,
+    timeofcomment timestamp,
+    PRIMARY KEY (id, autor,timeofcomment)
+)
+
+CREATE TABLE Comentarios_videos
+(
+    id         int,
+    autor      text,
+    comentario text,
+    video_id int,
+    timeofcomment timestamp,
+    PRIMARY KEY (id, autor,timeofcomment)
+);
+
+CREATE TABLE tags
+(
+    id int,
+    name text,
+    video_id int,
+    PRIMARY KEY (name,id,video_id)
+)
+
+CREATE TABLE Events
+(
+    id int,
+    video_id int,
+    autor text,
+    type text,
+    time_record timestamp,
+    moment_of_the_video int,
+    PRIMARY KEY (video_id,autor,id)
+)
+
+
+CREATE TABLE Ratings
+(
+    id int,
+    video_id int,
+    rating int,
+    PRIMARY KEY ( video_id,id )
+)
+
+
+INSERT INTO utilizador (username, nome, email, registro_time) VALUES ('jane_smith', 'Jane Smith', 'jane.smith@example.com', '2023-02-15 08:30:00');
+INSERT INTO utilizador (username, nome, email, registro_time) VALUES ('bob_johnson', 'Bob Johnson', 'bob.johnson@example.com', '2023-03-20 14:45:00');
+INSERT INTO utilizador (username, nome, email, registro_time) VALUES ('alice_williams', 'Alice Williams', 'alice.williams@example.com', '2023-04-10 10:15:00');
+INSERT INTO utilizador (username, nome, email, registro_time) VALUES ('charlie_brown', 'Charlie Brown', 'charlie.brown@example.com', '2023-05-05 18:00:00');
+INSERT INTO utilizador (username, nome, email, registro_time) VALUES ('susan_white', 'Susan White', 'susan.white@example.com', '2023-06-08 21:30:00');
+
+
+
+INSERT INTO video_autor (id, autor, nome, descricao, tags, upload, followers) VALUES (1, 'jane_smith', 'Introduction to Programming', 'Learn the basics of programming', {'programming', 'beginner'}, '2023-02-15 09:30:00', {'bob_johnson', 'alice_williams'});
+INSERT INTO video_autor (id, autor, nome, descricao, tags, upload, followers) VALUES (2, 'bob_johnson', 'Data Science Fundamentals', 'Exploring the world of data science', {'data_science', 'analytics'}, '2023-03-20 15:00:00', {'alice_williams', 'charlie_brown'});
+INSERT INTO video_autor (id, autor, nome, descricao, tags, upload, followers) VALUES (3, 'alice_williams', 'Web Development Workshop', 'Building interactive websites', {'web_development', 'workshop'}, '2023-04-10 11:30:00', {'charlie_brown', 'susan_white'});
+
+
+INSERT INTO video_video (id, autor, nome, descricao, tags, upload, followers) VALUES (4, 'charlie_brown', 'Mobile App Development', 'Creating mobile applications', {'mobile_app', 'development'}, '2023-05-05 19:30:00', {'susan_white', 'jane_smith'});
+INSERT INTO video_video (id, autor, nome, descricao, tags, upload, followers) VALUES (5, 'susan_white', 'Machine Learning Basics', 'Introduction to machine learning concepts', {'machine_learning', 'basics'}, '2023-06-08 22:45:00', {'jane_smith', 'bob_johnson'});
+INSERT INTO video_video (id, autor, nome, descricao, tags, upload, followers) VALUES (6, 'jane_smith', 'Cybersecurity Essentials', 'Protecting your digital world', {'cybersecurity', 'essentials'}, '2023-07-12 14:00:00', {'bob_johnson', 'alice_williams'});
+
+
+
+INSERT INTO Comentarios_utilizador (id, autor, comentario, video_id, timeofcomment)VALUES (1, 'jane_smith', 'Great introduction!', 1, '2023-02-15 09:45:00');
+INSERT INTO Comentarios_utilizador (id, autor, comentario, video_id, timeofcomment)VALUES (2, 'bob_johnson', 'Looking forward to more videos from you!', 2, '2023-03-20 15:30:00');
+INSERT INTO Comentarios_utilizador (id, autor, comentario, video_id, timeofcomment)VALUES (3, 'alice_williams', 'Excellent explanation of advanced queries!', 3, '2023-04-10 12:15:00');
+
+
+INSERT INTO Comentarios_videos (id, autor, comentario, video_id, timeofcomment)VALUES (4, 'charlie_brown', 'Interesting insights into data replication!', 6, '2023-05-05 20:00:00');
+INSERT INTO Comentarios_videos (id, autor, comentario, video_id, timeofcomment)VALUES (5, 'susan_white', 'Compression made easy to understand, great video!', 9, '2023-06-08 23:45:00');
+INSERT INTO Comentarios_videos (id, autor, comentario, video_id, timeofcomment)VALUES (6, 'jane_smith', 'Backup and restore are often overlooked, thanks for highlighting!', 10, '2023-07-12 15:15:00');
+
+
+INSERT INTO tags (id, name, video_id)VALUES (1, 'database', 1);
+INSERT INTO tags (id, name, video_id)VALUES (2, 'nosql', 1);
+INSERT INTO tags (id, name, video_id)VALUES (3, 'modeling', 2);
+INSERT INTO tags (id, name, video_id)VALUES (4, 'best_practices', 3);
+INSERT INTO tags (id, name, video_id)VALUES (5, 'queries', 4);
+
+
+INSERT INTO Events (id, video_id, autor, type, time_record, moment_of_the_video)VALUES (1, 1, 'jane_smith', 'like', '2023-02-15 10:00:00', 30);
+INSERT INTO Events (id, video_id, autor, type, time_record, moment_of_the_video)VALUES (2, 2, 'bob_johnson', 'dislike', '2023-03-20 16:15:00', 45);
+INSERT INTO Events (id, video_id, autor, type, time_record, moment_of_the_video)VALUES (3, 3, 'alice_williams', 'view', '2023-04-10 13:00:00', 20);
+INSERT INTO Events (id, video_id, autor, type, time_record, moment_of_the_video)VALUES (4, 4, 'charlie_brown', 'like', '2023-05-05 21:15:00', 15);
+INSERT INTO Events (id, video_id, autor, type, time_record, moment_of_the_video)VALUES (5, 5, 'john_doe', 'view', '2023-06-08 00:30:00', 50);
+
+
+INSERT INTO Ratings (id, video_id, rating)VALUES (1, 6, 4);
+INSERT INTO Ratings (id, video_id, rating)VALUES (2, 7, 5);
+INSERT INTO Ratings (id, video_id, rating)VALUES (3, 8, 3);
+INSERT INTO Ratings (id, video_id, rating)VALUES (4, 9, 4);
+INSERT INTO Ratings (id, video_id, rating)VALUES (5, 10, 5);

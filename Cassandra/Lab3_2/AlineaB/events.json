@@ -1,0 +1,82 @@
+[
+  {
+    "video_id": 5,
+    "autor": "john_doe",
+    "id": 5,
+    "moment_of_the_video": 50,
+    "time_record": "2023-06-07 23:30:00.000",
+    "type": "view"
+  },
+  {
+    "video_id": 10,
+    "autor": "charlie_brown",
+    "id": 10,
+    "moment_of_the_video": 30,
+    "time_record": "2023-11-28 22:45:00.000",
+    "type": "dislike"
+  },
+  {
+    "video_id": 1,
+    "autor": "jane_smith",
+    "id": 1,
+    "moment_of_the_video": 30,
+    "time_record": "2023-02-15 10:00:00.000",
+    "type": "like"
+  },
+  {
+    "video_id": 8,
+    "autor": "bob_johnson",
+    "id": 8,
+    "moment_of_the_video": 10,
+    "time_record": "2023-09-22 18:15:00.000",
+    "type": "view"
+  },
+  {
+    "video_id": 2,
+    "autor": "bob_johnson",
+    "id": 2,
+    "moment_of_the_video": 45,
+    "time_record": "2023-03-20 16:15:00.000",
+    "type": "dislike"
+  },
+  {
+    "video_id": 4,
+    "autor": "charlie_brown",
+    "id": 4,
+    "moment_of_the_video": 15,
+    "time_record": "2023-05-05 20:15:00.000",
+    "type": "like"
+  },
+  {
+    "video_id": 7,
+    "autor": "jane_smith",
+    "id": 7,
+    "moment_of_the_video": 25,
+    "time_record": "2023-08-18 16:30:00.000",
+    "type": "dislike"
+  },
+  {
+    "video_id": 6,
+    "autor": "susan_white",
+    "id": 6,
+    "moment_of_the_video": 40,
+    "time_record": "2023-07-12 14:45:00.000",
+    "type": "like"
+  },
+  {
+    "video_id": 9,
+    "autor": "alice_williams",
+    "id": 9,
+    "moment_of_the_video": 35,
+    "time_record": "2023-10-25 20:00:00.000",
+    "type": "like"
+  },
+  {
+    "video_id": 3,
+    "autor": "alice_williams",
+    "id": 3,
+    "moment_of_the_video": 20,
+    "time_record": "2023-04-10 12:00:00.000",
+    "type": "view"
+  }
+]
