@@ -1,0 +1,448 @@
+--queries--
+
+--1.
+Estatisticas do jogador 101. 
+
+>SELECT * FROM estatisticas_jogadores_por_jogador WHERE jogardor_id = 101;
+
+[
+  {
+    "jogardor_id": 101,
+    "partida_id": 1,
+    "assistencias": 12,
+    "id": 1,
+    "pontos": 43,
+    "ressaltos": 3
+  },
+  {
+    "jogardor_id": 101,
+    "partida_id": 5,
+    "assistencias": 15,
+    "id": 9,
+    "pontos": 37,
+    "ressaltos": 2
+  }
+]
+
+--2.
+Estatisticas dos jogadores na partida 1.
+
+>SELECT * FROM estatisticas_jogadores_por_partida WHERE partida_id = 1;
+
+
+[
+  {
+    "partida_id": 1,
+    "jogardor_id": 101,
+    "assistencias": 12,
+    "id": 1,
+    "pontos": 43,
+    "ressaltos": 3
+  },
+  {
+    "partida_id": 1,
+    "jogardor_id": 202,
+    "assistencias": 8,
+    "id": 2,
+    "pontos": 25,
+    "ressaltos": 7
+  }
+]
+
+
+--3.
+Liste todos os jogadores da equipa 'Boston Celtics'
+
+SELECT * FROM jogadores_by_equipa WHERE equipa = 'Boston Celtics';
+
+
+>[
+  {
+    "equipa": "Boston Celtics",
+    "nome": "Al Horford",
+    "id": 204,
+    "nba_thophies": ["5x NBA All-Star"],
+    "pontos_fortes": {
+      "defense": "rim protection",
+      "playmaking": "post passing"
+    },
+    "posicao": "C",
+    "years_nba": 14
+  },
+  {
+    "equipa": "Boston Celtics",
+    "nome": "Jaylen Brown",
+    "id": 202,
+    "nba_thophies": ["All-Rookie Second Team"],
+    "pontos_fortes": {
+      "defense": "athleticism",
+      "scoring": "slashing"
+    },
+    "posicao": "SG",
+    "years_nba": 5
+  },
+  {
+    "equipa": "Boston Celtics",
+    "nome": "Jayson Tatum",
+    "id": 201,
+    "nba_thophies": ["All-NBA Third Team", "All-Rookie First Team"],
+    "pontos_fortes": {
+      "defense": "perimeter defense",
+      "scoring": "versatility"
+    },
+    "posicao": "SF",
+    "years_nba": 4
+  },
+  {
+    "equipa": "Boston Celtics",
+    "nome": "Marcus Smart",
+    "id": 203,
+    "nba_thophies": [],
+    "pontos_fortes": {
+      "defense": "tenacity",
+      "playmaking": "leadership"
+    },
+    "posicao": "PG",
+    "years_nba": 7
+  },
+  {
+    "equipa": "Boston Celtics",
+    "nome": "Robert Williams III",
+    "id": 205,
+    "nba_thophies": [],
+    "pontos_fortes": {
+      "rebounding": "offensive boards",
+      "shot-blocking": "athleticism"
+    },
+    "posicao": "C",
+    "years_nba": 3
+  }
+]
+
+
+--4.
+Total de pontos feitos por jogadores com estatisticas.
+
+SELECT SUM(pontos) AS total_pontos FROM estatisticas_jogadores_por_partida;
+
+[
+  {
+    "total_pontos": 533
+  }
+]
+
+
+--5.
+Liste 5 equipas da NBA
+
+>SELECT * FROM equipas LIMIT 5;
+
+[
+  {
+    "id": 5,
+    "nome": "Brooklyn Nets",
+    "cidade": "Brooklyn",
+    "jogadores": ["DeAndre Jordan", "James Harden", "Joe Harris", "Kyrie Irving", "Nicolas Claxton"],
+    "nba_trophies": 0,
+    "star_players": ["Kevin Durant"]
+  },
+  {
+    "id": 10,
+    "nome": "Phoenix Suns",
+    "cidade": "Phoenix",
+    "jogadores": ["Chris Paul", "Deandre Ayton", "Devin Booker", "Jae Crowder", "Mikal Bridges"],
+    "nba_trophies": 0,
+    "star_players": ["Devin Booker"]
+  },
+  {
+    "id": 11,
+    "nome": "Portland Trail Blazers",
+    "cidade": "Portland",
+    "jogadores": ["CJ McCollum", "Damian Lillard", "Jusuf Nurkic", "Norman Powell", "Robert Covington"],
+    "nba_trophies": 0,
+    "star_players": ["Damian Lillard"]
+  },
+  {
+    "id": 1,
+    "nome": "Atlanta Hawks",
+    "cidade": "Atlanta",
+    "jogadores": ["Bogdan Bogdanovic", "Clint Capela", "DeAndre Hunter", "Dennis Schröder", "John Collins", "Trae Young"],
+    "nba_trophies": 1,
+    "star_players": ["Trae Young"]
+  },
+  {
+    "id": 8,
+    "nome": "Miami Heat",
+    "cidade": "Miami",
+    "jogadores": ["Bam Adebayo", "Duncan Robinson", "Jimmy Butler", "Kyle Lowry", "Tyler Herro"],
+    "nba_trophies": 3,
+    "star_players": ["Jimmy Butler"]
+  }
+]
+
+
+--6.
+Jogos em Casa dos Atlanta Hawks ordenados pela data.
+
+>SELECT * FROM partidas_by_equipa_casa WHERE equipa_casa = 'Atlanta Hawks' ORDER BY data DESC;
+
+[
+  {
+    "equipa_casa": "Atlanta Hawks",
+    "data": "2023-12-05 18:30:00.000",
+    "id": 9,
+    "attendance": 16000,
+    "cidade": "Atlanta",
+    "equipa_fora": "Boston Celtics",
+    "estatisticas_adicionais": {
+      "3-pointers": 18,
+      "free-throws": 12
+    },
+    "local": "State Farm Arena",
+    "pontos": {
+      "Atlanta Hawks": 98,
+      "Boston Celtics": 105
+    },
+    "winner": "Boston Celtics"
+  },
+  {
+    "equipa_casa": "Atlanta Hawks",
+    "data": "2023-12-01 19:30:00.000",
+    "id": 5,
+    "attendance": 15500,
+    "cidade": "Atlanta",
+    "equipa_fora": "Golden State Warriors",
+    "estatisticas_adicionais": {
+      "3-pointers": 10,
+      "field-goals": 45
+    },
+    "local": "State Farm Arena",
+    "pontos": {
+      "Atlanta Hawks": 110,
+      "Golden State Warriors": 112
+    },
+    "winner": "Golden State Warriors"
+  },
+  {
+    "equipa_casa": "Atlanta Hawks",
+    "data": "2023-11-27 18:00:00.000",
+    "id": 1,
+    "attendance": 15000,
+    "cidade": "Atlanta",
+    "equipa_fora": "Boston Celtics",
+    "estatisticas_adicionais": {
+      "3-pointers": 20,
+      "free-throws": 15
+    },
+    "local": "State Farm Arena",
+    "pontos": {
+      "Atlanta Hawks": 105,
+      "Boston Celtics": 110
+    },
+    "winner": "Boston Celtics"
+  }
+]
+
+--7.
+Liste tudo sobre o jogador Trae Young.
+
+>SELECT * FROM jogadores_by_name WHERE id=101 AND nome='Trae Young';
+
+[
+  {
+    "id": 101,
+    "nome": "Trae Young",
+    "equipa": "Atlanta Hawks",
+    "nba_thophies": ["All-Rookie First Team"],
+    "pontos_fortes": {
+      "playmaking": "vision",
+      "scoring": "3-point shooting"
+    },
+    "posicao": "PG",
+    "years_nba": 4
+  }
+]
+
+
+--8.
+Partidas ganhas pelos Golden State Warriors.
+
+SELECT * FROM partidas WHERE winner = 'Golden State Warriors';
+
+[
+  {
+    "winner": "Golden State Warriors",
+    "id": 2,
+    "attendance": 18000,
+    "cidade": "San Francisco",
+    "data": "2023-11-28 18:30:00.000",
+    "equipa_casa": "Golden State Warriors",
+    "equipa_fora": "San Antonio Spurs",
+    "estatisticas_adicionais": {
+      "assists": 25,
+      "rebounds": 50
+    },
+    "local": "Chase Center",
+    "pontos": {
+      "Golden State Warriors": 115,
+      "San Antonio Spurs": 108
+    }
+  },
+  {
+    "winner": "Golden State Warriors",
+    "id": 4,
+    "attendance": 17000,
+    "cidade": "San Antonio",
+    "data": "2023-11-30 20:00:00.000",
+    "equipa_casa": "San Antonio Spurs",
+    "equipa_fora": "Golden State Warriors",
+    "estatisticas_adicionais": {
+      "fouls": 20,
+      "turnovers": 15
+    },
+    "local": "AT&T Center",
+    "pontos": {
+      "Golden State Warriors": 105,
+      "San Antonio Spurs": 98
+    }
+  },
+  {
+    "winner": "Golden State Warriors",
+    "id": 5,
+    "attendance": 15500,
+    "cidade": "Atlanta",
+    "data": "2023-12-01 19:30:00.000",
+    "equipa_casa": "Atlanta Hawks",
+    "equipa_fora": "Golden State Warriors",
+    "estatisticas_adicionais": {
+      "3-pointers": 10,
+      "field-goals": 45
+    },
+    "local": "State Farm Arena",
+    "pontos": {
+      "Atlanta Hawks": 110,
+      "Golden State Warriors": 112
+    }
+  },
+  {
+    "winner": "Golden State Warriors",
+    "id": 7,
+    "attendance": 17500,
+    "cidade": "San Francisco",
+    "data": "2023-12-03 21:00:00.000",
+    "equipa_casa": "Golden State Warriors",
+    "equipa_fora": "Atlanta Hawks",
+    "estatisticas_adicionais": {
+      "fouls": 22,
+      "rebounds": 48
+    },
+    "local": "Chase Center",
+    "pontos": {
+      "Atlanta Hawks": 114,
+      "Golden State Warriors": 118
+    }
+  },
+  {
+    "winner": "Golden State Warriors",
+    "id": 10,
+    "attendance": 17500,
+    "cidade": "San Francisco",
+    "data": "2023-12-06 19:00:00.000",
+    "equipa_casa": "Golden State Warriors",
+    "equipa_fora": "San Antonio Spurs",
+    "estatisticas_adicionais": {
+      "assists": 20,
+      "rebounds": 45
+    },
+    "local": "Chase Center",
+    "pontos": {
+      "Golden State Warriors": 112,
+      "San Antonio Spurs": 100
+    }
+  },
+  {
+    "winner": "Golden State Warriors",
+    "id": 12,
+    "attendance": 17000,
+    "cidade": "San Antonio",
+    "data": "2023-12-08 20:30:00.000",
+    "equipa_casa": "San Antonio Spurs",
+    "equipa_fora": "Golden State Warriors",
+    "estatisticas_adicionais": {
+      "assists": 22,
+      "field-goals": 40
+    },
+    "local": "AT&T Center",
+    "pontos": {
+      "Golden State Warriors": 110,
+      "San Antonio Spurs": 105
+    }
+  }
+]
+
+--9.
+
+Partidas na cidade de Atlanta. 
+
+>SELECT * FROM partidas WHERE cidade = 'Atlanta';
+
+[
+  {
+    "id": 5,
+    "data": "2023-12-01 19:30:00.000",
+    "attendance": 15500,
+    "cidade": "Atlanta",
+    "equipa_casa": "Atlanta Hawks",
+    "equipa_fora": "Golden State Warriors",
+    "estatisticas_adicionais": {
+      "3-pointers": 10,
+      "field-goals": 45
+    },
+    "local": "State Farm Arena",
+    "pontos": {
+      "Atlanta Hawks": 110,
+      "Golden State Warriors": 112
+    },
+    "winner": "Golden State Warriors"
+  },
+  {
+    "id": 1,
+    "data": "2023-11-27 18:00:00.000",
+    "attendance": 15000,
+    "cidade": "Atlanta",
+    "equipa_casa": "Atlanta Hawks",
+    "equipa_fora": "Boston Celtics",
+    "estatisticas_adicionais": {
+      "3-pointers": 20,
+      "free-throws": 15
+    },
+    "local": "State Farm Arena",
+    "pontos": {
+      "Atlanta Hawks": 120,
+      "Boston Celtics": 110
+    },
+    "winner": "Atlanta Hawks"
+  }
+
+
+--10.
+Point Guard da equipa dos San Antonio Spurs.
+
+>SELECT * FROM jogadores_by_equipa WHERE posicao = 'PG' and equipa='San Antonio Spurs';
+
+[
+  {
+    "equipa": "San Antonio Spurs",
+    "nome": "Dejounte Murray",
+    "id": 403,
+    "nba_thophies": [],
+    "pontos_fortes": {
+      "defense": "perimeter defense",
+      "playmaking": "passing"
+    },
+    "posicao": "PG",
+    "years_nba": 4
+  }
+]
+
+

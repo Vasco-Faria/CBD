@@ -1,0 +1,300 @@
+Use "Cassandra3_4";
+
+
+CREATE TABLE IF NOT EXISTS jogadores_by_name (
+    id INT,
+    nome TEXT,
+    equipa TEXT,
+    posicao TEXT,
+    Years_nba INT,
+    Nba_thophies SET<TEXT>,
+    pontos_fortes MAP<TEXT, TEXT>,
+    PRIMARY KEY (id,nome)
+) WITH CLUSTERING ORDER BY (nome DESC);
+
+CREATE TABLE IF NOT EXISTS jogadores_by_equipa (
+    id INT,
+    nome TEXT,
+    equipa TEXT,
+    posicao TEXT,
+    Years_nba INT,
+    Nba_thophies SET<TEXT>,
+    pontos_fortes MAP<TEXT, TEXT>,
+    PRIMARY KEY (equipa,nome,id)
+) WITH CLUSTERING ORDER BY (nome ASC);
+
+
+CREATE TABLE IF NOT EXISTS equipas(
+    id INT ,
+    nome TEXT,
+    cidade TEXT,
+    Nba_trophies INT,
+    Star_Players LIST<TEXT>,
+    jogadores SET<TEXT>,
+    PRIMARY KEY (id,nome)
+) WITH CLUSTERING ORDER BY (nome DESC);
+
+
+
+CREATE TABLE IF NOT EXISTS partidas (
+    id INT,
+    data TIMESTAMP,
+    equipa_casa TEXT,
+    equipa_fora TEXT,
+    pontos MAP<TEXT, INT>,
+    winner TEXT,
+    cidade TEXT,
+    local TEXT,
+    attendance INT,
+    estatisticas_adicionais MAP<TEXT, INT>,
+    PRIMARY KEY (id,data)
+);
+
+CREATE TABLE IF NOT EXISTS partidas_by_winner (
+    id INT,
+    data TIMESTAMP,
+    equipa_casa TEXT,
+    equipa_fora TEXT,
+    pontos MAP<TEXT, INT>,
+    winner TEXT,
+    cidade TEXT,
+    local TEXT,
+    attendance INT,
+    estatisticas_adicionais MAP<TEXT, INT>,
+    PRIMARY KEY (winner,id)
+);
+
+CREATE TABLE IF NOT EXISTS partidas_by_equipa_casa (
+    id INT,
+    data TIMESTAMP,
+    equipa_casa TEXT,
+    equipa_fora TEXT,
+    pontos MAP<TEXT, INT>,
+    winner TEXT,
+    cidade TEXT,
+    local TEXT,
+    attendance INT,
+    estatisticas_adicionais MAP<TEXT, INT>,
+    PRIMARY KEY (equipa_casa,data, id)
+) WITH CLUSTERING ORDER BY (data DESC);
+
+
+
+CREATE TABLE IF NOT EXISTS estatisticas_jogadores_por_jogador (
+    id INT,
+    jogardor_id INT,
+    partida_id INT,
+    pontos INT,
+    ressaltos INT,
+    assistencias INT,
+    PRIMARY KEY (jogardor_id, partida_id)
+);
+
+CREATE TABLE IF NOT EXISTS estatisticas_jogadores_por_partida (
+    id INT,
+    jogardor_id INT,
+    partida_id INT,
+    pontos INT,
+    ressaltos INT,
+    assistencias INT,
+    PRIMARY KEY (partida_id, jogardor_id)
+);
+
+--indexes
+
+CREATE INDEX ON partidas(winner);
+CREATE INDEX IF NOT EXISTS idx_equipas_cidade ON partidas (cidade);
+CREATE INDEX IF NOT EXISTS idx_posicao ON jogadores_by_equipa (posicao);
+
+
+
+-- Nba jogadores --
+
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (101, 'Trae Young', 'Atlanta Hawks', 'PG', 4, {'All-Rookie First Team'}, {'scoring': '3-point shooting', 'playmaking': 'vision'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (102, 'John Collins', 'Atlanta Hawks', 'PF', 4, {'All-Rookie Second Team'}, {'scoring': 'inside scoring', 'rebounding': 'defensive boards'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (103, 'Clint Capela', 'Atlanta Hawks', 'C', 6, {'All-NBA Third Team', 'NBA blocks leader'}, {'rebounding': 'offensive boards', 'defense': 'shot-blocking'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (104, 'Bogdan Bogdanovic', 'Atlanta Hawks', 'SG', 4, {}, {'scoring': '3-point shooting', 'playmaking': 'clutch shots'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (105, 'DeAndre Hunter', 'Atlanta Hawks', 'SF', 2, {'All-Rookie Second Team'}, {'defense': 'perimeter defense', 'scoring': 'mid-range game'});
+
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (201, 'Jayson Tatum', 'Boston Celtics', 'SF', 4, {'All-NBA Third Team', 'All-Rookie First Team'}, {'scoring': 'versatility', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (202, 'Jaylen Brown', 'Boston Celtics', 'SG', 5, {'All-Rookie Second Team'}, {'scoring': 'slashing', 'defense': 'athleticism'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (203, 'Marcus Smart', 'Boston Celtics', 'PG', 7, {}, {'defense': 'tenacity', 'playmaking': 'leadership'});
+INSERT INTO jogadores_by_name(id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (204, 'Al Horford', 'Boston Celtics', 'C', 14, {'5x NBA All-Star'}, {'defense': 'rim protection', 'playmaking': 'post passing'});
+INSERT INTO jogadores_by_name(id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (205, 'Robert Williams III', 'Boston Celtics', 'C', 3, {}, {'rebounding': 'offensive boards', 'shot-blocking': 'athleticism'});
+
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (301, 'Stephen Curry', 'Golden State Warriors', 'PG', 12, {'2x NBA MVP', '3x NBA Champion'}, {'scoring': '3-point shooting', 'playmaking': 'ball-handling'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (302, 'Klay Thompson', 'Golden State Warriors', 'SG', 9, {'3x NBA Champion', '5x NBA All-Star'}, {'scoring': 'catch-and-shoot', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (303, 'Draymond Green', 'Golden State Warriors', 'PF', 9, {'3x NBA Champion', '3x NBA All-Star'}, {'defense': 'versatility', 'playmaking': 'passing'});
+INSERT INTO jogadores_by_name(id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (304, 'Andrew Wiggins', 'Golden State Warriors', 'SF', 7, {}, {'scoring': 'athleticism', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_name(id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (305, 'James Wiseman', 'Golden State Warriors', 'C', 1, {}, {'rebounding': 'rim protection', 'offense': 'pick-and-roll'});
+
+INSERT INTO jogadores_by_name(id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (401, 'DeMar DeRozan', 'San Antonio Spurs', 'SF', 12, {}, {'scoring': 'mid-range game', 'playmaking': 'isolation'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (402, 'LaMarcus Aldridge', 'San Antonio Spurs', 'PF', 15, {'7x NBA All-Star'}, {'scoring': 'post moves', 'rebounding': 'offensive boards'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (403, 'Dejounte Murray', 'San Antonio Spurs', 'PG', 4, {}, {'playmaking': 'passing', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (404, 'Keldon Johnson', 'San Antonio Spurs', 'SF', 2, {}, {'scoring': 'driving', 'rebounding': 'defensive boards'});
+INSERT INTO jogadores_by_name (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (405, 'Jakob Poeltl', 'San Antonio Spurs', 'C', 5, {}, {'defense': 'rim protection', 'rebounding': 'defensive boards'});
+
+
+
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (101, 'Trae Young', 'Atlanta Hawks', 'PG', 4, {'All-Rookie First Team'}, {'scoring': '3-point shooting', 'playmaking': 'vision'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (102, 'John Collins', 'Atlanta Hawks', 'PF', 4, {'All-Rookie Second Team'}, {'scoring': 'inside scoring', 'rebounding': 'defensive boards'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (103, 'Clint Capela', 'Atlanta Hawks', 'C', 6, {'All-NBA Third Team', 'NBA blocks leader'}, {'rebounding': 'offensive boards', 'defense': 'shot-blocking'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (104, 'Bogdan Bogdanovic', 'Atlanta Hawks', 'SG', 4, {}, {'scoring': '3-point shooting', 'playmaking': 'clutch shots'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (105, 'DeAndre Hunter', 'Atlanta Hawks', 'SF', 2, {'All-Rookie Second Team'}, {'defense': 'perimeter defense', 'scoring': 'mid-range game'});
+
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (201, 'Jayson Tatum', 'Boston Celtics', 'SF', 4, {'All-NBA Third Team', 'All-Rookie First Team'}, {'scoring': 'versatility', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (202, 'Jaylen Brown', 'Boston Celtics', 'SG', 5, {'All-Rookie Second Team'}, {'scoring': 'slashing', 'defense': 'athleticism'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (203, 'Marcus Smart', 'Boston Celtics', 'PG', 7, {}, {'defense': 'tenacity', 'playmaking': 'leadership'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (204, 'Al Horford', 'Boston Celtics', 'C', 14, {'5x NBA All-Star'}, {'defense': 'rim protection', 'playmaking': 'post passing'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (205, 'Robert Williams III', 'Boston Celtics', 'C', 3, {}, {'rebounding': 'offensive boards', 'shot-blocking': 'athleticism'});
+
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (301, 'Stephen Curry', 'Golden State Warriors', 'PG', 12, {'2x NBA MVP', '3x NBA Champion'}, {'scoring': '3-point shooting', 'playmaking': 'ball-handling'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (302, 'Klay Thompson', 'Golden State Warriors', 'SG', 9, {'3x NBA Champion', '5x NBA All-Star'}, {'scoring': 'catch-and-shoot', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (303, 'Draymond Green', 'Golden State Warriors', 'PF', 9, {'3x NBA Champion', '3x NBA All-Star'}, {'defense': 'versatility', 'playmaking': 'passing'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (304, 'Andrew Wiggins', 'Golden State Warriors', 'SF', 7, {}, {'scoring': 'athleticism', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (305, 'James Wiseman', 'Golden State Warriors', 'C', 1, {}, {'rebounding': 'rim protection', 'offense': 'pick-and-roll'});
+
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (401, 'DeMar DeRozan', 'San Antonio Spurs', 'SF', 12, {}, {'scoring': 'mid-range game', 'playmaking': 'isolation'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (402, 'LaMarcus Aldridge', 'San Antonio Spurs', 'PF', 15, {'7x NBA All-Star'}, {'scoring': 'post moves', 'rebounding': 'offensive boards'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (403, 'Dejounte Murray', 'San Antonio Spurs', 'PG', 4, {}, {'playmaking': 'passing', 'defense': 'perimeter defense'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (404, 'Keldon Johnson', 'San Antonio Spurs', 'SF', 2, {}, {'scoring': 'driving', 'rebounding': 'defensive boards'});
+INSERT INTO jogadores_by_equipa (id, nome, equipa, posicao, Years_nba, Nba_thophies, pontos_fortes) VALUES (405, 'Jakob Poeltl', 'San Antonio Spurs', 'C', 5, {}, {'defense': 'rim protection', 'rebounding': 'defensive boards'});
+
+
+--Nba equipas--
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (1, 'Atlanta Hawks', 'Atlanta', 1, ['Trae Young'], {'Trae Young', 'John Collins', 'Clint Capela', 'Bogdan Bogdanovic', 'DeAndre Hunter'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (2, 'Boston Celtics', 'Boston', 17, ['Jayson Tatum'], {'Jayson Tatum', 'Jaylen Brown', 'Marcus Smart', 'Al Horford', 'Robert Williams III'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (3, 'Golden State Warriors', 'San Francisco', 6, ['Stephen Curry'], {'Stephen Curry', 'Klay Thompson', 'Draymond Green', 'Andrew Wiggins', 'James Wiseman'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (4, 'San Antonio Spurs', 'San Antonio', 5, ['DeMar DeRozan'], {'DeMar DeRozan', 'LaMarcus Aldridge', 'Dejounte Murray', 'Keldon Johnson', 'Jakob Poeltl'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (5, 'Brooklyn Nets', 'Brooklyn', 0, ['Kevin Durant'], {'Kyrie Irving', 'James Harden', 'Joe Harris', 'DeAndre Jordan', 'Nicolas Claxton'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (6, 'Chicago Bulls', 'Chicago', 6, ['Zach LaVine'], {'Zach LaVine', 'Nikola Vucevic', 'Lonzo Ball', 'DeMar DeRozan', 'Patrick Williams'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (7, 'Dallas Mavericks', 'Dallas', 1, ['Luka Doncic'], {'Luka Doncic', 'Kristaps Porzingis', 'Tim Hardaway Jr.', 'Jalen Brunson', 'Dwight Powell'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (8, 'Miami Heat', 'Miami', 3, ['Jimmy Butler'], {'Jimmy Butler', 'Bam Adebayo', 'Kyle Lowry', 'Duncan Robinson', 'Tyler Herro'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (9, 'Milwaukee Bucks', 'Milwaukee', 2, ['Giannis Antetokounmpo'], {'Giannis Antetokounmpo', 'Khris Middleton', 'Jrue Holiday', 'Brook Lopez', 'Donte DiVincenzo'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (10, 'Phoenix Suns', 'Phoenix', 0, ['Devin Booker'], {'Devin Booker', 'Chris Paul', 'Deandre Ayton', 'Mikal Bridges', 'Jae Crowder'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (11, 'Portland Trail Blazers', 'Portland', 0, ['Damian Lillard'], {'Damian Lillard', 'CJ McCollum', 'Norman Powell', 'Jusuf Nurkic', 'Robert Covington'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (12, 'Utah Jazz', 'Salt Lake City', 0, ['Donovan Mitchell'], {'Donovan Mitchell', 'Rudy Gobert', 'Mike Conley', 'Bojan Bogdanovic', 'Jordan Clarkson'});
+INSERT INTO equipas (id, nome, cidade, Nba_trophies, Star_Players, jogadores) VALUES (13, 'Houston Rockets', 'Houston', 2, ['Christian Wood'], {'Christian Wood', 'Kevin Porter Jr.', 'Jalen Green', 'John Wall', 'Daniel Theis'});
+
+
+--Nba partidas--
+
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (1, '2023-11-27 18:00:00', 'Atlanta Hawks', 'Boston Celtics', {'Atlanta Hawks': 105, 'Boston Celtics': 110}, 'Boston Celtics', 'Atlanta', 'State Farm Arena', 15000, {'3-pointers': 20, 'free-throws': 15});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (2, '2023-11-28 18:30:00', 'Golden State Warriors', 'San Antonio Spurs', {'Golden State Warriors': 115, 'San Antonio Spurs': 108}, 'Golden State Warriors', 'San Francisco', 'Chase Center', 18000, {'rebounds': 50, 'assists': 25});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (3, '2023-11-29 19:00:00', 'Boston Celtics', 'Atlanta Hawks', {'Boston Celtics': 112, 'Atlanta Hawks': 100}, 'Boston Celtics', 'Boston', 'TD Garden', 16000, {'steals': 12, 'blocks': 8});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (4, '2023-11-30 20:00:00', 'San Antonio Spurs', 'Golden State Warriors', {'San Antonio Spurs': 98, 'Golden State Warriors': 105}, 'Golden State Warriors', 'San Antonio', 'AT&T Center', 17000, {'turnovers': 15, 'fouls': 20});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (5, '2023-12-01 19:30:00', 'Atlanta Hawks', 'Golden State Warriors', {'Atlanta Hawks': 110, 'Golden State Warriors': 112}, 'Golden State Warriors', 'Atlanta', 'State Farm Arena', 15500, {'field-goals': 45, '3-pointers': 10});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (6, '2023-12-02 20:30:00', 'San Antonio Spurs', 'Boston Celtics', {'San Antonio Spurs': 102, 'Boston Celtics': 95}, 'San Antonio Spurs', 'San Antonio', 'AT&T Center', 16500, {'assists': 18, 'blocks': 5});
+INSERT INTO partidas_by_equipa_casa(id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (7, '2023-12-03 21:00:00', 'Golden State Warriors', 'Atlanta Hawks', {'Golden State Warriors': 118, 'Atlanta Hawks': 114}, 'Golden State Warriors', 'San Francisco', 'Chase Center', 17500, {'rebounds': 48, 'fouls': 22});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (8, '2023-12-04 22:00:00', 'Boston Celtics', 'San Antonio Spurs', {'Boston Celtics': 105, 'San Antonio Spurs': 108}, 'San Antonio Spurs', 'Boston', 'TD Garden', 18500, {'turnovers': 10, 'steals': 15});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (9, '2023-12-05 18:30:00', 'Atlanta Hawks', 'Boston Celtics', {'Atlanta Hawks': 98, 'Boston Celtics': 105}, 'Boston Celtics', 'Atlanta', 'State Farm Arena', 16000, {'3-pointers': 18, 'free-throws': 12});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (10, '2023-12-06 19:00:00', 'Golden State Warriors', 'San Antonio Spurs', {'Golden State Warriors': 112, 'San Antonio Spurs': 100}, 'Golden State Warriors', 'San Francisco', 'Chase Center', 17500, {'rebounds': 45, 'assists': 20});
+INSERT INTO partidas_by_equipa_casa(id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (11, '2023-12-07 20:00:00', 'Boston Celtics', 'Atlanta Hawks', {'Boston Celtics': 118, 'Atlanta Hawks': 112}, 'Boston Celtics', 'Boston', 'TD Garden', 18000, {'steals': 15, 'blocks': 7});
+INSERT INTO partidas_by_equipa_casa (id, data, equipa_casa, equipa_fora, pontos, winner, cidade, local, attendance, estatisticas_adicionais) VALUES (12, '2023-12-08 20:30:00', 'San Antonio Spurs', 'Golden State Warriors', {'San Antonio Spurs': 105, 'Golden State Warriors': 110}, 'Golden State Warriors', 'San Antonio', 'AT&T Center', 17000, {'field-goals': 40, 'assists': 22});
+
+--Nba estatisticas em alguns jogos --
+
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (1,101, 1, 43, 3, 12);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (2,202, 1, 25, 7, 8);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (3,303, 2, 35, 4, 12);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (4,404, 2, 28, 6, 9);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (5,102, 3, 22, 8, 6);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (6,201, 3, 18, 4, 11);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (7,304, 4, 30, 5, 7);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (8,401, 4, 22, 6, 10);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (9,101, 5, 37, 2, 15);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (10,301, 5, 28, 5, 11);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (11,403, 6, 26, 7, 8);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (12,205, 6, 20, 4, 6);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (13,104, 7, 32, 6, 10);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (14,304, 7, 28, 5, 9);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (15,402, 8, 23, 7, 8);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (16,204, 8, 20, 5, 6);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (17,105, 9, 29, 4, 7);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (18,201, 9, 25, 6, 9);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (19,304, 10, 18, 7, 11);
+INSERT INTO estatisticas_jogadores_por_jogador (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (20,402, 10, 24, 5, 8);
+
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (1,101, 1, 43, 3, 12);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (2,202, 1, 25, 7, 8);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (3,303, 2, 35, 4, 12);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (4,404, 2, 28, 6, 9);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (5,102, 3, 22, 8, 6);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (6,201, 3, 18, 4, 11);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (7,304, 4, 30, 5, 7);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (8,401, 4, 22, 6, 10);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (9,101, 5, 37, 2, 15);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (10,301, 5, 28, 5, 11);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (11,403, 6, 26, 7, 8);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (12,205, 6, 20, 4, 6);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (13,104, 7, 32, 6, 10);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (14,304, 7, 28, 5, 9);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (15,402, 8, 23, 7, 8);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (16,204, 8, 20, 5, 6);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (17,105, 9, 29, 4, 7);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (18,201, 9, 25, 6, 9);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (19,304, 10, 18, 7, 11);
+INSERT INTO estatisticas_jogadores_por_partida (id,jogardor_id, partida_id, pontos, ressaltos, assistencias) VALUES (20,402, 10, 24, 5, 8);
+
+
+--updates
+
+UPDATE equipas SET jogadores = jogadores + {'Dennis Schröder'} WHERE id = 1 AND nome = 'Atlanta Hawks';
+UPDATE jogadores_by_name SET pontos_fortes = {'Defesa': 'Alta', 'Passe': 'Excelente'} WHERE id = 201 AND nome = 'Jayson Tatum';
+UPDATE partidas
+SET pontos = {'Atlanta Hawks': 120, 'Boston Celtics': 110}, winner = 'Atlanta Hawks' WHERE id = 1 AND data = '2023-11-27 18:00:00';
+UPDATE jogadores_by_name SET Years_nba = 10 WHERE id = 401 AND nome = 'DeMar DeRozan';
+
+--deletes
+
+DELETE FROM equipas WHERE id = 13 AND nome = 'Houston Rockets';
+DELETE FROM partidas WHERE id = 9;
+DELETE FROM jogadores_by_name WHERE id = 402 AND nome = 'LaMarcus Aldridge';
+DELETE FROM partidas WHERE id = 7 AND data = '2023-12-03 21:00:00';
+
+
+BEGIN BATCH
+DELETE FROM jogadores_by_name WHERE id = 301 AND nome = 'Stephen Curry';
+UPDATE equipas SET jogadores = jogadores - {'Stephen Curry'} WHERE id = 3 AND nome = 'Golden State Warriors';
+APPLY BATCH;
+
+
+
+
+--queries--
+
+--1.
+SELECT * FROM estatisticas_jogadores_por_jogador WHERE jogardor_id=101;
+
+
+--2.
+SELECT * FROM estatisticas_jogadores_por_partida WHERE partida_id = 1;
+
+
+--3.
+SELECT * FROM jogadores_by_equipa WHERE equipa = 'Boston Celtics';
+
+
+--4.
+
+SELECT SUM(pontos) AS total_pontos FROM estatisticas_jogadores_por_partida;
+
+
+--5.
+SELECT * FROM equipas LIMIT 5;
+
+--6.
+SELECT * FROM partidas_by_equipa_casa WHERE equipa_casa = 'Atlanta Hawks' ORDER BY data DESC;
+
+--7.
+SELECT * FROM jogadores_by_name WHERE id=101 AND nome='Trae Young';
+
+
+--8.
+SELECT * FROM partidas WHERE winner = 'Golden State Warriors';
+
+--9.
+SELECT * FROM partidas WHERE cidade = 'Atlanta';
+
+--10.
+SELECT * FROM jogadores_by_equipa WHERE posicao = 'PG' and equipa='San Antonio Spurs';

@@ -1,0 +1,284 @@
+1. Os últimos 3 comentários introduzidos para um vídeo;
+
+
+> select * from cassandra3_2.comentarios_video where video_id=16 limit 3;
+
+
+[
+  {
+    "video_id": 16,
+    "timeofcomment": "2040-07-06 13:10:55.000",
+    "id": 17,
+    "autor": "charlie_brown",
+    "comentario": "Interesting insights into data privacy!"
+  },
+  {
+    "video_id": 16,
+    "timeofcomment": "2030-02-02 16:12:00.000",
+    "id": 17,
+    "autor": "charles_lec",
+    "comentario": "ok ok ok good work buddy"
+  },
+  {
+    "video_id": 16,
+    "timeofcomment": "2025-10-05 21:56:43.000",
+    "id": 17,
+    "autor": "michael_jordan",
+    "comentario": "Interesting"
+  }
+]
+
+
+////////////////////////////////////////////////
+
+2. Lista das tags de determinado vídeo;
+
+select tags from cassandra3_2.video_video where id=6
+
+
+[
+  {
+    "tags": ["cybersecurity", "essentials"]
+  }
+]
+
+
+////////////////////////////////////////////////
+
+3. Todos os vídeos com a tag Aveiro;
+
+>select video_id from cassandra3_2.tags where name = 'Aveiro';
+
+
+[
+  {
+    "video_id": 23
+  }
+]
+
+
+////////////////////////////////////////////////
+
+4. Os últimos 5 eventos de determinado vídeo realizados por um utilizador;
+
+
+>select * from cassandra3_2.events where video_id=8 and  autor='bob_johnson' limit 5;
+
+
+[
+  {
+    "video_id": 8,
+    "autor": "bob_johnson",
+    "id": 8,
+    "moment_of_the_video": 10,
+    "time_record": "2023-09-22 18:15:00.000",
+    "type": "view"
+  }
+]
+
+
+////////////////////////////////////////////////
+
+5. Vídeos partilhados por determinado utilizador (maria1987, por exemplo) num
+determinado período de tempo (Agosto de 2017, por exemplo);
+
+
+>select * from cassandra3_2.video_autor where autor = 'vasco' and upload <= '2017-08-31 23:59:59' and upload >= '2017-08-01 00:00:00';
+
+
+
+[
+  {
+    "autor": "vasco",
+    "upload": "2017-08-15 13:45:32.000",
+    "id": 24,
+    "descricao": "just cooking",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Cassandratings",
+    "tags": ["Aveiro", "CBD"]
+  },
+  {
+    "autor": "vasco",
+    "upload": "2017-08-23 22:59:59.000",
+    "id": 25,
+    "descricao": "just cooking",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Cassandratings2",
+    "tags": ["Aveiro", "CBD"]
+  }
+]
+
+
+
+////////////////////////////////////////////////
+
+6. Os últimos 10 vídeos, ordenado inversamente pela data da partilhada;
+
+Nao e possivel devido ao facto de nao existir nenhuma clustering key da data , para ordenar de forma inversa.
+Contudo, seria possivel caso a query contenha um 'WHERE', o que nao e possivel com base no que e pedido no enunciado.
+
+
+////////////////////////////////////////////////
+
+
+
+7. Todos os seguidores (followers) de determinado vídeo;
+
+select followers from cassandra3_2.video_video WHERE id=22
+
+
+[
+  {
+    "followers": ["liam_miller", "olivia_davis"]
+  }
+]
+
+
+////////////////////////////////////////////////
+
+8. Todos os comentários (dos vídeos) que determinado utilizador está a seguir (following);
+
+Nao e possivel em uma unica query devido ao facto de ser necessario um join, o que nao e possivel em cassandra visto que nao suporta esse tipo de operacao.
+
+
+////////////////////////////////////////////////
+
+
+9. Os 5 vídeos com maior rating;
+
+Nao e possivel devido ao facto de cassandra nao permitir consultas globais.
+
+
+////////////////////////////////////////////////
+
+
+10. Uma query que retorne todos os vídeos e que mostre claramente a forma pela qual estão
+ordenados;
+
+
+select * from cassandra3_2.video_video;
+
+{
+    "id": 5,
+    "autor": "susan_white",
+    "upload": "2023-06-08 21:45:00.000",
+    "descricao": "Introduction to machine learning concepts",
+    "followers": ["bob_johnson", "jane_smith"],
+    "nome": "Machine Learning Basics",
+    "tags": ["basics", "machine_learning"]
+  },
+  {
+    "id": 16,
+    "autor": "olivia_davis",
+    "upload": "2024-12-28 14:30:00.000",
+    "descricao": "Tips for writing clean and maintainable frontend code",
+    "followers": ["emma_wilson", "liam_miller"],
+    "nome": "Frontend Development Best Practices",
+    "tags": ["best_practices", "frontend"]
+  },
+  {
+    "id": 19,
+    "autor": "noah_thompson",
+    "upload": "2025-03-25 20:00:00.000",
+    "descricao": "Exploring use cases for edge computing",
+    "followers": ["ava_jones", "oliver_smith"],
+    "nome": "Edge Computing Applications",
+    "tags": ["applications", "edge_computing"]
+  },
+  
+  ....
+  
+  
+  ////////////////////////////////////////////////
+  
+ 11. Lista com as Tags existentes e o número de vídeos catalogados com cada uma delas;
+ 
+ Nao e possivel. Para a realizar o pretendido no enunciado seria necessario mais uma tabela com tags como primray key e um set com os ids dos videos.
+ 
+ ////////////////////////////////////////////////
+ 
+ 
+ 
+12.
+2 Comentarios feitos pela 'olivia_davis' num espaco de 1 ano.
+
+SELECT *
+FROM Comentarios_utilizador
+WHERE autor='olivia_davis' and timeofcomment >= '2023-11-28' AND timeofcomment <= '2024-11-28'
+LIMIT 2;
+
+[
+  {
+    "autor": "olivia_davis",
+    "timeofcomment": "2024-03-02 12:33:21.000",
+    "id": 13,
+    "comentario": "cassandra db",
+    "video_id": 2
+  },
+  {
+    "autor": "olivia_davis",
+    "timeofcomment": "2024-03-02 12:33:21.000",
+    "id": 14,
+    "comentario": "cassandra db",
+    "video_id": 2
+  }
+]
+
+13.
+Todos os videos do Autor 'vasco'.
+
+Select * FROM cassandra3_2.video_autor WHERE autor='vasco'
+
+[
+
+  {
+    "autor": "vasco",
+    "upload": "2017-08-15 13:45:32.000",
+    "id": 24,
+    "descricao": "just cooking",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Cassandratings",
+    "tags": ["Aveiro", "CBD"]
+  },
+  {
+    "autor": "vasco",
+    "upload": "2017-08-23 22:59:59.000",
+    "id": 25,
+    "descricao": "just cooking",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Cassandratings2",
+    "tags": ["Aveiro", "CBD"]
+  },
+  {
+    "autor": "vasco",
+    "upload": "2023-11-15 14:45:32.000",
+    "id": 23,
+    "descricao": "just cooking",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Cassandra Master",
+    "tags": ["Aveiro", "CBD"]
+  },
+  {
+    "autor": "vasco",
+    "upload": "2027-08-15 13:45:32.000",
+    "id": 24,
+    "descricao": "just cooking",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Cassandratings",
+    "tags": ["Aveiro", "CBD"]
+  },
+  {
+    "autor": "vasco",
+    "upload": "2027-08-23 22:59:59.000",
+    "id": 25,
+    "descricao": "just cooking",
+    "followers": ["liam_miller", "olivia_davis"],
+    "nome": "Cassandratings2",
+    "tags": ["Aveiro", "CBD"]
+  }
+]
+
+
+
+
+

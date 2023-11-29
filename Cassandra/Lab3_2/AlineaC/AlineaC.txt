@@ -5,12 +5,12 @@ Select * from cassandra3_2.video_autor where autor='ava_jones'
 [
   {
     "autor": "ava_jones",
-    "upload": "2024-09-19 21:30:00.000",
-    "id": 13,
-    "descricao": "An introduction to quantum computing concepts",
+    "upload": "2025-04-28 21:30:00.000",
+    "id": 20,
+    "descricao": "Introduction to deep learning concepts and algorithms",
     "followers": ["oliver_smith", "sophie_brown"],
-    "nome": "Quantum Computing Explained",
-    "tags": ["introduction", "quantum_computing"]
+    "nome": "Deep Learning Fundamentals",
+    "tags": ["deep_learning", "fundamentals"]
   }
 ]
 
