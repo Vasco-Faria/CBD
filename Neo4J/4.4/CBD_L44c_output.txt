@@ -1,0 +1,153 @@
+
+10 Clubes que mais venderam nos ultimos anos
+
+
+Query: MATCH (t:Transfer)-[:FROM_CLUB]->(c:Club) RETURN c.name As Club, count(t) As Number_of_Transfers ORDER BY Number_of_Transfers DESC LIMIT 10
+
+{Club=Desp. Brasil, Number_of_Transfers=55}
+{Club=Genoa, Number_of_Transfers=48}
+{Club=Udinese Calcio, Number_of_Transfers=47}
+{Club=Cruzeiro, Number_of_Transfers=44}
+{Club=Corinthians, Number_of_Transfers=42}
+{Club=Parma, Number_of_Transfers=41}
+{Club=FC Porto, Number_of_Transfers=40}
+{Club=Siena, Number_of_Transfers=37}
+{Club=Estudiantes, Number_of_Transfers=34}
+{Club=Benfica, Number_of_Transfers=33}
+
+
+Jogadores com transferencias mais caras
+
+
+Query: MATCH (player:Player)<-[:OF_PLAYER]-(t:Transfer)-[:TO_CLUB]->(buyerClub:Club),(t)-[:FROM_CLUB]->(sellerClub:Club)RETURN player.name AS Player, sellerClub.name AS SellerClub, buyerClub.name AS BuyerClub, t.fee AS TransferFee ORDER BY t.fee DESC LIMIT 3
+
+{Player=David Villa, SellerClub=Valencia CF, BuyerClub=FC Barcelona, TransferFee=3.6E7}
+{Player=Ángel Di María, SellerClub=Benfica, BuyerClub=Real Madrid, TransferFee=2.97E7}
+{Player=Yaya Touré, SellerClub=FC Barcelona, BuyerClub=Man City, TransferFee=2.7E7}
+
+
+Jogadores Mais Valiosos por Posição:
+
+
+Query: MATCH (t:Transfer)-[:OF_PLAYER]->(p:Player) RETURN p.position AS Position, max(t.fee) AS MaxFee ORDER BY MaxFee DESC LIMIT 10
+
+{Position=Centre-Forward, MaxFee=3.6E7}
+{Position=Right Wing, MaxFee=2.97E7}
+{Position=Central Midfield, MaxFee=2.7E7}
+{Position=Attacking Midfield, MaxFee=2.588E7}
+{Position=Left-Back, MaxFee=2.043E7}
+{Position=Centre-Back, MaxFee=1.98E7}
+{Position=Left Wing, MaxFee=1.62E7}
+{Position=Defensive Midfield, MaxFee=1.53E7}
+{Position=Keeper, MaxFee=7650000.0}
+{Position=Right-Back, MaxFee=7200000.0}
+
+
+Clubes com Maior Gasto em Transferências
+
+
+Query: MATCH (t:Transfer)-[:TO_CLUB]->(c:Club) RETURN c.name AS Club, sum(t.fee) AS TotalSpent ORDER BY TotalSpent DESC LIMIT 5
+
+{Club=Man City, TotalSpent=1.3091E8}
+{Club=Real Madrid, TotalSpent=8.01E7}
+{Club=FC Barcelona, TotalSpent=6.525E7}
+{Club=Genoa, TotalSpent=5.4215E7}
+{Club=Juventus, TotalSpent=4.8218E7}
+
+
+Relação Entre Idade e Taxa de Transferência
+
+
+Query: MATCH (t:Transfer)-[r:OF_PLAYER]->(p:Player) RETURN p.age AS Age, avg(t.fee) AS AverageTransferFee  ORDER BY Age
+
+{Age=8, AverageTransferFee=0.0}
+{Age=10, AverageTransferFee=0.0}
+{Age=11, AverageTransferFee=0.0}
+{Age=12, AverageTransferFee=0.0}
+{Age=13, AverageTransferFee=0.0}
+{Age=14, AverageTransferFee=852.5345622119818}
+{Age=15, AverageTransferFee=1833.3333333333364}
+{Age=16, AverageTransferFee=2148.5900216919754}
+{Age=17, AverageTransferFee=15981.74071819841}
+{Age=18, AverageTransferFee=14091.972569584539}
+{Age=19, AverageTransferFee=27246.189791516874}
+{Age=20, AverageTransferFee=48116.129032258104}
+{Age=21, AverageTransferFee=65303.00833635366}
+{Age=22, AverageTransferFee=85562.13249705976}
+{Age=23, AverageTransferFee=150360.97359735947}
+{Age=24, AverageTransferFee=171482.25790513842}
+{Age=25, AverageTransferFee=129625.99469496032}
+{Age=26, AverageTransferFee=110980.33189920081}
+{Age=27, AverageTransferFee=112319.91215226939}
+{Age=28, AverageTransferFee=135079.05982906}
+{Age=29, AverageTransferFee=65696.53179190746}
+{Age=30, AverageTransferFee=65037.84860557764}
+{Age=31, AverageTransferFee=20128.61736334404}
+{Age=32, AverageTransferFee=97783.78378378374}
+{Age=33, AverageTransferFee=59374.999999999985}
+{Age=34, AverageTransferFee=0.0}
+{Age=35, AverageTransferFee=0.0}
+{Age=36, AverageTransferFee=0.0}
+{Age=37, AverageTransferFee=180000.0}
+{Age=38, AverageTransferFee=0.0}
+{Age=39, AverageTransferFee=0.0}
+{Age=40, AverageTransferFee=0.0}
+
+
+Clube que Mais Comprou Jogadores
+
+
+Query: MATCH (t:Transfer)-[:TO_CLUB]->(c:Club)RETURN c.name AS Club, count(t) AS NumberOfPlayersBought ORDER BY NumberOfPlayersBought DESC LIMIT 1
+
+{Club=Figueirense FC, NumberOfPlayersBought=35}
+
+
+Jogadores Mais Vendidos por Nacionalidade
+
+
+Query: MATCH (t:Transfer)-[:FROM_CLUB]->(sellerClub:Club)-[:PART_OF]->(country:Country) RETURN country.name AS Nationality, count(t) AS TotalSales ORDER BY TotalSales DESC LIMIT 10
+
+{Nationality=Italy, TotalSales=2781}
+{Nationality=England, TotalSales=1937}
+{Nationality=Brazil, TotalSales=1639}
+{Nationality=Germany, TotalSales=1490}
+{Nationality=Spain, TotalSales=1106}
+{Nationality=Russia, TotalSales=1078}
+{Nationality=Argentina, TotalSales=907}
+{Nationality=Portugal, TotalSales=853}
+{Nationality=Turkey, TotalSales=814}
+{Nationality=France, TotalSales=752}
+
+
+Jogadores Mais Vendidos por Nacionalidade
+
+
+Query: MATCH (c:Club)-[:PART_OF]->(country:Country), (c)<-[:TO_CLUB]-(t:Transfer) RETURN country.name AS Country, sum(t.fee) AS TotalSpending ORDER BY TotalSpending DESC LIMIT 10
+
+{Country=England, TotalSpending=4.30498E8}
+{Country=Italy, TotalSpending=4.060457E8}
+{Country=Spain, TotalSpending=2.6517209E8}
+{Country=Germany, TotalSpending=1.72907E8}
+{Country=Russia, TotalSpending=1.66444E8}
+{Country=France, TotalSpending=1.23885E8}
+{Country=Portugal, TotalSpending=9.9994E7}
+{Country=Ukraine, TotalSpending=9.1405E7}
+{Country=Brazil, TotalSpending=6.6998E7}
+{Country=Turkey, TotalSpending=6.3248E7}
+
+
+Posicao mais popular nas transferencias
+
+
+Query: MATCH (t:Transfer)-[r:OF_PLAYER]->(p:Player) RETURN p.position AS Position, count(r) AS NumberOfTransfers ORDER BY NumberOfTransfers DESC LIMIT 1
+
+{Position=Centre-Forward, NumberOfTransfers=5073}
+
+
+Quantas transferencias houve acima de 25 milhoes
+
+
+Query: MATCH (t:Transfer) WHERE t.fee > 25000000 RETURN count(t) AS NumberOfTransfers
+
+{NumberOfTransfers=5}
+
